@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import GetUserService from '../GetUserService';
 import Slide from '@mui/material/Slide';
+import HomeService from './HomeService';
 
 const Home = () => {
 
@@ -25,6 +26,8 @@ const Home = () => {
 
   const [transition, setTransition] = useState(undefined);
 
+  const [listTeachers, setListTechers] = useState(null);
+
   useEffect(() => {
     if(LoggedInService() === true)
     {
@@ -33,7 +36,21 @@ const Home = () => {
       console.log(user);
       handleClick();
     }
+    DisplayTeachers();
   }, []);
+
+  function DisplayTeachers()
+  {
+    HomeService().then(res => {
+      console.log(res.data);
+      setListTechers(res.data.map((elem, ind) => {
+        {console.log(elem)}
+        return(
+          <CardTeacherComponent key={ind} teacher={elem}/>
+        );
+      }));
+    });
+  }
 
   function TransitionUp(props) {
     return <Slide {...props} direction="up" />;
@@ -69,19 +86,13 @@ const Home = () => {
     <div>
       <NavBar />
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent:'center' }}>
-        <CardTeacherComponent />
-        <CardTeacherComponent />
-        <CardTeacherComponent />
-        <CardTeacherComponent />
-        <CardTeacherComponent />
-        <CardTeacherComponent />
-        <CardTeacherComponent />
+        {listTeachers}
       </div>
-      <div>
+      {/* <div>
         <Stack spacing={2} sx={{marginLeft: '76vh', marginTop: '8vh'}}>
-          <Pagination count={10} variant="outlined" color="primary" />
+          <Pagination count={(Math.abs(teachersCount / 6) > 6.0) ? (teachersCount / 6) + 1 : teachersCount / 6} variant="outlined" color="primary" />
         </Stack>
-      </div>
+      </div> */}
       {
         isShow &&
         <Snackbar

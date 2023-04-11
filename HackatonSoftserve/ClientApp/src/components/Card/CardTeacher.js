@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import LoggedInService from '../LoggedInService';
 
-function CardTeacherComponent() {
+function CardTeacherComponent(props) {
   
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -44,8 +44,7 @@ function CardTeacherComponent() {
       <Card sx={{}}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+            <Avatar src={props.teacher.image} sx={{ bgcolor: red[500] }} aria-label="recipe">
             </Avatar>
           }
           action={ isShow &&
@@ -53,7 +52,7 @@ function CardTeacherComponent() {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Name Surname"
+          title={props.teacher.name + ' ' + props.teacher.surname}
         />
         {
           isShow &&
