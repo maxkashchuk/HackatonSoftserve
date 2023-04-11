@@ -1,3 +1,4 @@
+import Navbar from '../NavMenu/NavMenu';
 import './Home.css'
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
   
   return (
     <div>
+      <Navbar/>
       <button onClick={populateWeatherData}>Click</button>
     </div>
   );
