@@ -1,0 +1,8 @@
+.backgroundImage {
+    background-image: url('../images/mainlnu.png');
+    background-size: 200vh 150vh;
+    height: 100vh;
+    width: 191.9vh;
+    margin-bottom: 50vh;
+    position: absolute;
+}

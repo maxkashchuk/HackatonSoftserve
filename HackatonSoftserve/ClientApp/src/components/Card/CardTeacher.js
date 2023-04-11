@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -10,9 +11,18 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Popover from '@mui/material/Popover';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+import LoggedInService from '../LoggedInService';
 
 function CardTeacherComponent() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const [isShow, setIsShow] = useState();
+
+  useEffect(() => {
+    setIsShow(LoggedInService());
+  });
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -38,14 +48,16 @@ function CardTeacherComponent() {
               R
             </Avatar>
           }
-          action={
+          action={ isShow &&
             <IconButton onClick={handleClick} aria-label="settings">
               <MoreVertIcon />
             </IconButton>
           }
           title="Name Surname"
         />
-        <Popover
+        {
+          isShow &&
+          <Popover
           id={id}
           open={open}
           anchorEl={anchorEl}
@@ -71,6 +83,7 @@ function CardTeacherComponent() {
             }}
           />
         </Popover>
+        }
         <CardContent>
           <Typography variant="h5" sx={{ p: 1 }} component="legend">
             Rating
@@ -81,6 +94,7 @@ function CardTeacherComponent() {
           </Typography>
         </CardContent>
       </Card>
+
     </div>
   );
 }

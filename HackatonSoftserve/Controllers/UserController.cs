@@ -25,7 +25,7 @@ namespace HackatonSoftserve.Controllers
         {
             if (user != null)
             {
-                User? u = _AppContext.Users.Where(el => el.Email == user.Email || el.Password == user.Password).FirstOrDefault();
+                User? u = _AppContext.Users.Where(el => el.Email == user.Email && el.Password == user.Password).FirstOrDefault();
                 if (u != null)
                 {
                     return Ok(u);

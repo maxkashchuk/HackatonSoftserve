@@ -1,4 +1,5 @@
 import './NavBar.css';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,9 +8,25 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import LoggedInService from '../LoggedInService';
 
 const NavBar = () => {
+
   const navigate = useNavigate();
+
+  const [isShow, setIsShow] = useState();
+
+  useEffect(() => {
+    setIsShow(LoggedInService());
+  });
+
+  function logOut()
+  {
+    localStorage.removeItem('isLogged');
+    localStorage.removeItem('User');
+    navigate('/');
+    window.location.reload(false);
+  }
 
   function goToLogin() {
     navigate('/signin');
@@ -27,18 +44,25 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar sx={{backgroundColor:'#000'}}>
-          {/* <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <MenuIcon />
-          </IconButton> */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Name and Surname
+            Dekanat
           </Typography>
-          <Button onClick={goToLogin} color="inherit">
-            SignIn
-          </Button>
-          <Button onClick={goToSignUp} color="inherit">
-            SignUp
-          </Button>
+          { !isShow &&
+            <div>
+            <Button onClick={goToLogin} color="inherit">
+              Sign In
+            </Button>
+            <Button onClick={goToSignUp} color="inherit">
+              Sign Up
+            </Button>
+            </div>
+          }
+          {
+            isShow &&
+            <Button onClick={logOut} color="inherit">
+              Log Out
+            </Button>
+          }
         </Toolbar>
       </AppBar>
     </Box>

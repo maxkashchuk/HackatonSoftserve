@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import NavMenu from "../NavMenu/NavMenu";
+import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './ChangeUserData.css'
@@ -19,7 +19,7 @@ const ChangeUserData = () => {
 
     return (
         <div>
-            <NavMenu></NavMenu>
+            <NavBar></NavBar>
 
             <div>
                 <div className="vriad">

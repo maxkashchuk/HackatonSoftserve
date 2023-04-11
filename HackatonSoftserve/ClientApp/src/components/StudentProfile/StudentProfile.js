@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import NavMenu from "../NavMenu/NavMenu";
+import NavBar from "../NavBar/NavBar";
 import './StudentProfile.css'
 import { Button, Grid } from "@mui/material";
 /*
@@ -23,7 +23,7 @@ const StudentProfile = () => {
     return (
         <div >
 
-            <NavMenu></NavMenu>
+            <NavBar></NavBar>
             <div className="vriad">
                 <div className="leftData">
                     <AccountCircleIcon sx={{ height: "15%", width: "20%", }}></AccountCircleIcon>
