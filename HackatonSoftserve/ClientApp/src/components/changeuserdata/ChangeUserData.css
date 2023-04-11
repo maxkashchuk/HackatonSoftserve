@@ -14,9 +14,6 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
-.fullPage {
-  background-color: rgb(71, 68, 65);
-}
 
 .userData {
   font-family: 'Encode Sans Condensed', sans-serif;
@@ -26,23 +23,26 @@ body::-webkit-scrollbar-thumb {
 }
 
 .leftData {
-  background-color:#6F6C58 ;
-  width: 70vh ;
   
-
+  width: 80vh ;
+  display: inline-block;
+  display: table-cell;
   color: aliceblue;
   z-index: 2;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  background-color:rgba(0,0,0,.3);
 }
 
 .lnuImage {
-  background-image: url(".././images/leneu.jpg");
-  width: 12vh;
-  background-size: 100% 100%;
-  display: table-cell;
-  filter: blur(4px);
-  z-index: 3;
+  background-image: url('../images/mainleneu1.png');height: 710px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  z-index: 1;
+  box-shadow: rgba(4, 4, 7, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 25px 36px -25px inset;
 }
+
 
 
 

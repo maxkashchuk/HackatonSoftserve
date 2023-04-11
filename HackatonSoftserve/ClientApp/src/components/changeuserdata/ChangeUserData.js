@@ -21,8 +21,8 @@ const ChangeUserData = () => {
         <div>
             <NavBar></NavBar>
 
-            <div>
-                <div className="vriad">
+            <div className="lnuImage">
+               
                     <div className="leftData">
                         <AccountCircleIcon sx={{ height: "15%", width: "20%", }}></AccountCircleIcon>
 
@@ -68,11 +68,10 @@ const ChangeUserData = () => {
                         </Button>
                     </div>
 
-                    <div className="lnuImage">
-                    </div>
+                 
                 </div>
 
-            </div>
+        
 
         </div>
 
