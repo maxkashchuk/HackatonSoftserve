@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -13,23 +11,77 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import { styled } from '@mui/material/styles';
+import SignUpService from './SignUpService';
 
 const theme = createTheme();
 
+const FileButton = styled(Button)({
+  width: '23vh',
+  marginLeft: '12%',
+  color: '#f48700',
+  borderColor: '#f48700',
+  '&:hover': {
+      color: '#FFC75F',
+      borderColor: '#FFC75F',
+    },
+    '&:active': {
+      color: 'f48700',
+      borderColor: 'f48700',
+    },
+    '&:focus': {
+      color: 'f48700',
+      borderColor: 'f48700',
+    },
+});
+
 export default function SignUp() {
+
+  const [File, setSelectedFile] = React.useState();
+
+  const [FirstName, setFirstName] = React.useState();
+
+  const [SecondName, setSecondName] = React.useState();
+
+  const [Email, setEmail] = React.useState();
+
+  const [Password, setPassword] = React.useState();
+
+  const [Role, setRole] = React.useState();
+
+  const [Faculty, setFaculty] = React.useState();
+
+  const [Group, setGroup] = React.useState();
+
+  function register()
+  {
+    // console.log(File);
+    // console.log(FirstName);
+    // console.log(SecondName);
+    // console.log(Email);
+    // console.log(Password);
+    // console.log(Role);
+    // console.log(Faculty);
+    // console.log(Group);
+    // {FirstName, SecondName, Email, Password, Role, Faculty, Group, File}
+    const user = {
+      Name: FirstName,
+      Surname: SecondName,
+      Email: Email,
+      Password: Password,
+      Role: Role,
+      Faculty: Faculty,
+      Group: Group,
+      Image: File
+    };
+    SignUpService(user).then(() => navigate('/signin'));
+  }
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -44,6 +96,31 @@ export default function SignUp() {
   function goToSignIn() {
     navigate('/signin');
   }
+
+  const onSelectFile = async e => {
+    if (!e.target.files || e.target.files.length === 0) {
+        setSelectedFile(undefined)
+        return
+    }
+    const result = await convertBase64(e.target.files[0]);
+    setSelectedFile(result);
+    e.target.value = '';
+  }
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -73,6 +150,7 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -83,6 +161,7 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e) => setSecondName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -93,6 +172,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -104,16 +184,62 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
             </Grid>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Grid sx={{marginTop: '3vh'}}>
+              <FormLabel sx={{marginLeft: '20vh'}} id="demo-row-radio-buttons-group-label">Who are you?</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                sx={{marginLeft: '15vh'}}
+              >
+                <FormControlLabel value="student" onChange={() => setRole('student')} control={<Radio />} label="Student" />
+                <FormControlLabel value="teacher" onChange={() => setRole('teacher')} control={<Radio />} label="Teacher" />
+              </RadioGroup>
+            </Grid>
+            <Grid item xs={12} sx={{marginTop: '3vh'}}>
+                <TextField
+                  required
+                  fullWidth
+                  name="faculty"
+                  label="Faculty"
+                  type="faculty"
+                  id="faculty"
+                  autoComplete="Faculty"
+                  onChange={(e) => setFaculty(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} sx={{marginTop: '3vh'}}>
+                <TextField
+                  required
+                  fullWidth
+                  name="group"
+                  label="Group"
+                  type="group"
+                  id="group"
+                  autoComplete="Group"
+                  onChange={(e) => setGroup(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} sx={{marginTop: '3vh'}}>
+                <label htmlFor="upload-photo">
+                          <input
+                            style={{ display: 'none' }}
+                            name="upload-photo"
+                            type="file"
+                            id="upload-photo"
+                            accept="image/*"
+                            onChange={onSelectFile}
+                          />
+                <FileButton style={{marginTop: '13%'}} variant="outlined" component="span">
+                  Pick photo
+                </FileButton>
+                </label>
+              </Grid>
+            <Button onClick={register} type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
@@ -125,7 +251,6 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
