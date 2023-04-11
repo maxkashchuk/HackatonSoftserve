@@ -19,7 +19,7 @@ const Home = () => {
         <CardTeacherComponent />
       </div>
       <BottomNavigationComponent />
-      <div className='backgroundImage'/>
+      {/* <div className='backgroundImage'/> */}
 
       {/* <CardSubjectComponent/> */}
       {/* <button onClick={populateWeatherData}>Click</button> */}

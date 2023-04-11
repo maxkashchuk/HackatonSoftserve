@@ -5,78 +5,79 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import PeopleIcon from '@mui/icons-material/People';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import GetUserService from '../GetUserService';
 import LoggedInService from '../LoggedInService';
+import GetUserService from '../GetUserService';
 import SchoolIcon from '@mui/icons-material/School';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default function Navigation() {
   const [value, setValue] = useState(0);
 
-  const [userLogged, setUserLogged] = useState(null);
-
-  const[userRole, setUserRole] = useState(null);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     if(LoggedInService() === true)
     {
-      setUserLogged(setTimeout(() => {
-        GetUserService()
-      }, 1000));
+      GetUserService().then(res => {setUserRole(res.role)});
     }
   }, []);
 
-  function check()
-  {
-    console.log(userLogged.role);
-  }
+  // function check()
+  // {
+  //   console.log(userRole);
+  // }
 
   return (
     <Box sx={{ width: '100%', position: 'absolute', bottom: '0' }}>
       {
-        null === 'student' &&
+        userRole === 'student' &&
         <BottomNavigation
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}>
-        <BottomNavigationAction onClick={check} label="Teachers" icon={<SchoolIcon />} />
-        <BottomNavigationAction label="Subjects" icon={<AutoStoriesIcon />} />
+        <BottomNavigationAction label="Teachers" icon={<SchoolIcon />} />
+        <BottomNavigationAction label="Subjects" icon={<HistoryEduIcon />} />
+        <BottomNavigationAction label="Profile" icon={<AccountCircleIcon />} />
       </BottomNavigation>
       }
       {
-        null === 'teacher' &&
+        userRole === 'teacher' &&
         <BottomNavigation
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}>
-        <BottomNavigationAction onClick={check} label="Teachers" icon={<PeopleIcon />} />
+        <BottomNavigationAction label="Teachers" icon={<PeopleIcon />} />
         <BottomNavigationAction label="Subjects" icon={<AutoStoriesIcon />} />
+        <BottomNavigationAction label="Profile" icon={<AccountCircleIcon />} />
       </BottomNavigation>
       }
       {
-        null === 'admin' &&
+        userRole === 'admin' &&
         <BottomNavigation
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}>
-        <BottomNavigationAction onClick={check} label="Teachers" icon={<PeopleIcon />} />
+        <BottomNavigationAction label="Teachers" icon={<PeopleIcon />} />
         <BottomNavigationAction label="Subjects" icon={<AutoStoriesIcon />} />
+        <BottomNavigationAction label="Profile" icon={<AccountCircleIcon />} />
       </BottomNavigation>
       }
       {
-        null === null &&
+        userRole === null &&
         <BottomNavigation
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}>
-        <BottomNavigationAction onClick={check} label="Teachers" icon={<PeopleIcon />} />
+        <BottomNavigationAction label="Teachers" icon={<PeopleIcon />} />
         <BottomNavigationAction label="Subjects" icon={<AutoStoriesIcon />} />
       </BottomNavigation>
       }
