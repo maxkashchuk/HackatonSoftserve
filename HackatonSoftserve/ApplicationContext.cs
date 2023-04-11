@@ -15,7 +15,6 @@ namespace HackatonSoftserve
             base.OnModelCreating(builder);
 
             builder.Entity<User>().HasKey(el => el.Id);
-            builder.Entity<User>().HasIndex(el => el.Role).IsUnique();
             builder.Entity<User>().HasIndex(el => el.Email).IsUnique();
             builder.Entity<User>().HasIndex(el => el.Password).IsUnique();
         }

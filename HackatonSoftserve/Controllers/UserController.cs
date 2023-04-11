@@ -2,6 +2,8 @@
 using HackatonSoftserve.Models.AuthModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace HackatonSoftserve.Controllers
 {
@@ -59,11 +61,12 @@ namespace HackatonSoftserve.Controllers
             return BadRequest();
         }
 
-        [Route("example")]
+        [Route("userget")]
         [HttpGet]
         async public Task<ActionResult> Example()
         {
-            return Ok();
+            List<User> u = await _AppContext.Users.Where(el => el.Role == "teacher").ToListAsync();
+            return Ok(u);
         }
     }
 }
