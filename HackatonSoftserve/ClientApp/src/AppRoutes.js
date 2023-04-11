@@ -1,4 +1,3 @@
-// import Navbar from "./components/NavMenu/NavMenu";
 import Home from './components/Home/Home';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
