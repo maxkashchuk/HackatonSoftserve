@@ -13,18 +13,26 @@ const NavMenu = () => {
 
   function goToLogin() {
     navigate('/signin');
+    
   }
 
+  function goToStudentProfile() {
+    navigate('/studentprofile');
+    
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx= {{backgroundColor: "#494737", zIndex: "1", shadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;"}}>
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Home
           </Typography>
+          <Button onClick={goToStudentProfile} color="inherit">	
+            Profile
+          </Button>
           <Button color="inherit">
             Chart
           </Button>

@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@600&display=swap');
+
+
+body::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.fullPage {
+  background-color: rgb(71, 68, 65);
+}
+
+.userData {
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-size: 4vh ;
+  margin-left: 5vh;
+  margin-top: 4vh;
+}
+
+.leftData {
+  background-color:#6F6C58 ;
+  width: 70vh ;
+  
+
+  color: aliceblue;
+  z-index: 2;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.lnuImage {
+  background-image: url(".././images/leneu.jpg");
+  width: 12vh;
+  background-size: 100% 100%;
+  display: table-cell;
+  filter: blur(4px);
+  z-index: 3;
+}
+
+
+
+.vriad {
+
+  display: table;
+
+}
+
+.input1:focus{
+
+    outline:none;
+
+}
+
+.input2 {
+
+margin-top: 3vh;
+margin-left: 5vh;
+}
