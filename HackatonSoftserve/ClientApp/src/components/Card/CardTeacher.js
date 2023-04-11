@@ -38,8 +38,8 @@ function CardTeacherComponent() {
     <div
       style={{
         display: 'inline-block',
-        marginLeft: '2vh',
-        marginTop: '3vh',
+        marginLeft: '17vh',
+        marginTop: '8vh',
       }}>
       <Card sx={{}}>
         <CardHeader

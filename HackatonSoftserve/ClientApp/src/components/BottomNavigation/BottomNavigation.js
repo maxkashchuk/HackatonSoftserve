@@ -29,7 +29,7 @@ export default function Navigation() {
   // }
 
   return (
-    <Box sx={{ width: '100%', position: 'absolute', bottom: '0' }}>
+    <Box sx={{ width: '100%', marginTop: '8vh', bottom: '0' }}>
       {
         userRole === 'student' &&
         <BottomNavigation

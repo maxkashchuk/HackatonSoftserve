@@ -3,6 +3,8 @@ import NavBar from '../NavBar/NavBar';
 import CardTeacherComponent from '../Card/CardTeacher';
 import CardSubjectComponent from '../Card/CardSubject';
 import BottomNavigationComponent from '../BottomNavigation/BottomNavigation';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const Home = () => {
 
@@ -17,6 +19,11 @@ const Home = () => {
         <CardTeacherComponent />
         <CardTeacherComponent />
         <CardTeacherComponent />
+      </div>
+      <div>
+        <Stack spacing={2} sx={{marginLeft: '76vh', marginTop: '8vh'}}>
+          <Pagination count={10} variant="outlined" color="primary" />
+        </Stack>
       </div>
       <BottomNavigationComponent />
       {/* <div className='backgroundImage'/> */}

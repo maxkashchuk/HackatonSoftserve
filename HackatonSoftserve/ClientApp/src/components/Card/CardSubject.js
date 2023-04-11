@@ -24,7 +24,7 @@ function CardSubjectComponent() {
 
   return (
     <div style={{ display: 'inline-block', marginTop: '2vh' }}>
-      <Card sx={{ maxWidth: 345, marginLeft: '2vh', marginTop: '3vh' }}>
+      <Card sx={{ maxWidth: 345, marginLeft: '10vh', marginTop: '3vh' }}>
         <CardHeader
           action={
             <IconButton onClick={handleClick} aria-label="settings">
