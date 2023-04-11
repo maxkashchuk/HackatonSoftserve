@@ -13,11 +13,16 @@ const NavBar = () => {
 
   function goToLogin() {
     navigate('/signin');
+    
   }
   function goToSignUp() {
     navigate('/signup');
   }
 
+  function goToStudentProfile() {
+    navigate('/studentprofile');
+    
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
