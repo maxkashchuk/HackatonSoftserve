@@ -108,9 +108,11 @@ const Home = () => {
       <BottomNavigationComponent />
       {/* <div className='backgroundImage'/> */}
 
-      {/* <CardSubjectComponent/> */}
-      {/* <button onClick={populateWeatherData}>Click</button> */}
+        {/* <CardSubjectComponent/> */}
+        {/* <button onClick={populateWeatherData}>Click</button> */}
+      </div>
     </div>
+
   );
 };
 

@@ -121,7 +121,7 @@ export default function SignUp() {
     });
   };
 
-  return (
+  return ( <div className='lnu'>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -251,6 +251,6 @@ export default function SignUp() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+    </ThemeProvider> </div>
   );
 }

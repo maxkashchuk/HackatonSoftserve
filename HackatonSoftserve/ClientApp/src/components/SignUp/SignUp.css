@@ -1,0 +1,14 @@
+
+.lnu {
+    background-image: url('../images/mainleneu1.png');height: 707px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    z-index: 1;
+    box-shadow: rgba(4, 4, 7, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 25px 36px -25px inset;
+  }
+
+  .root {
+    background-color: #fff0;
+  }

@@ -24,6 +24,7 @@ const StudentProfile = () => {
         <div >
 
             <NavBar></NavBar>
+            <div className="fullImage">
             <div className="vriad">
                 <div className="leftData">
                     <AccountCircleIcon sx={{ height: "15%", width: "20%", }}></AccountCircleIcon>
@@ -46,9 +47,10 @@ const StudentProfile = () => {
                         Back to Home
                     </Button>
                 </div>
+            </div>
+            
 
-                <div className="lnuImage">
-                </div>
+                
             </div>
 
 

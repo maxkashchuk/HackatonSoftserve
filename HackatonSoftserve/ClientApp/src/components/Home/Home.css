@@ -1,8 +1,12 @@
 .backgroundImage {
-    background-image: url('../images/mainlnu.png');
-    background-size: 200vh 150vh;
-    height: 100vh;
-    width: 191.9vh;
-    margin-bottom: 50vh;
-    position: absolute;
+    background-image: url('../images/mainleneu1.png');height: 632px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    z-index: 1;
+    box-shadow: rgba(4, 4, 7, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 25px 36px -25px inset;
+
 }
+
+  
