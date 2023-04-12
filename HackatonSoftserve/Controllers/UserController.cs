@@ -1,5 +1,6 @@
 ﻿using HackatonSoftserve.Models;
 using HackatonSoftserve.Models.AuthModels;
+using HackatonSoftserve.Models.AuthModelsTeachers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,14 +33,24 @@ namespace HackatonSoftserve.Controllers
                 {
                     return Ok(u);
                 }
+                Teacher? t = _AppContext.Teachers.Where(el => el.Email == user.Email && el.Password == user.Password).FirstOrDefault();
+                if (t != null)
+                {
+                    return Ok(t);
+                }
+                Admin? a = _AppContext.Admins.Where(el => el.Email == user.Email && el.Password == user.Password).FirstOrDefault();
+                if (a != null)
+                {
+                    return Ok(a);
+                }
                 return BadRequest();
             }
             return BadRequest();
         }
 
-        [Route("signup")]
+        [Route("signupstudent")]
         [HttpPost]
-        async public Task<ActionResult> SignUp(SignUpUser user)
+        async public Task<ActionResult> SignUpStudent(SignUpUser user)
         {
             if (user != null)
             {
@@ -61,11 +72,35 @@ namespace HackatonSoftserve.Controllers
             return BadRequest();
         }
 
-        [Route("userget")]
+        [Route("signupteacher")]
+        [HttpPost]
+        async public Task<ActionResult> SignUpTeacher(SignUpTeacher user)
+        {
+            if (user != null)
+            {
+                Teacher u = new Teacher()
+                {
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    Email = user.Email,
+                    Password = user.Password,
+                    Role = user.Role,
+                    Faculty = user.Faculty,
+                    Image = user.Image,
+                    Subject = user.Subject,
+                };
+                await _AppContext.Teachers.AddAsync(u);
+                await _AppContext.SaveChangesAsync();
+                return Ok(u);
+            }
+            return BadRequest();
+        }
+
+        [Route("teachersget")]
         [HttpGet]
         async public Task<ActionResult> Example()
         {
-            List<User> u = await _AppContext.Users.Where(el => el.Role == "teacher").ToListAsync();
+            List<Teacher> u = await _AppContext.Teachers.ToListAsync();
             return Ok(u);
         }
     }

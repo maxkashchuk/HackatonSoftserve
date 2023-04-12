@@ -1,26 +1,25 @@
-import './Home.css';
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import NavBar from '../NavBar/NavBar';
-import CardTeacherComponent from '../Card/CardTeacher';
-import CardSubjectComponent from '../Card/CardSubject';
-import BottomNavigationComponent from '../BottomNavigation/BottomNavigation';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import LoggedInService from '../LoggedInService';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import GetUserService from '../GetUserService';
-import Slide from '@mui/material/Slide';
-import HomeService from './HomeService';
+import "./Home.css";
+import * as React from "react";
+import { useEffect, useState } from "react";
+import NavBar from "../NavBar/NavBar";
+import CardTeacherComponent from "../Card/CardTeacher";
+import CardSubjectComponent from "../Card/CardSubject";
+import BottomNavigationComponent from "../BottomNavigation/BottomNavigation";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import LoggedInService from "../LoggedInService";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import GetUserService from "../GetUserService";
+import Slide from "@mui/material/Slide";
+import HomeService from "./HomeService";
 
 const Home = () => {
-
   const [open, setOpen] = useState(false);
 
-  const [isShow, setIsShow] = useState();
+  const [isShow, setIsShow] = useState(false);
 
   const [user, setUser] = useState(null);
 
@@ -28,27 +27,36 @@ const Home = () => {
 
   const [listTeachers, setListTechers] = useState(null);
 
+  const [isRoleAdmin, setRoleAdmin] = useState(false);
+
   useEffect(() => {
-    if(LoggedInService() === true)
-    {
-      setIsShow('true');
-      GetUserService().then(res => {setUser(res)});
+    if (LoggedInService() === true) {
+      GetUserService().then((res) => {
+        setUser(res);
+        if (user.role !== "admin") {
+          setRoleAdmin(true);
+        }
+      });
+      if (isRoleAdmin === true) {
+        setIsShow("true");
+      }
       console.log(user);
       handleClick();
     }
     DisplayTeachers();
   }, []);
 
-  function DisplayTeachers()
-  {
-    HomeService().then(res => {
+  function DisplayTeachers() {
+    HomeService().then((res) => {
       console.log(res.data);
-      setListTechers(res.data.map((elem, ind) => {
-        {console.log(elem)}
-        return(
-          <CardTeacherComponent key={ind} teacher={elem}/>
-        );
-      }));
+      setListTechers(
+        res.data.map((elem, ind) => {
+          {
+            console.log(elem);
+          }
+          return <CardTeacherComponent key={ind} teacher={elem} />;
+        })
+      );
     });
   }
 
@@ -62,7 +70,7 @@ const Home = () => {
   };
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -85,7 +93,9 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent:'center' }}>
+      <div
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      >
         {listTeachers}
       </div>
       {/* <div>
@@ -93,26 +103,23 @@ const Home = () => {
           <Pagination count={(Math.abs(teachersCount / 6) > 6.0) ? (teachersCount / 6) + 1 : teachersCount / 6} variant="outlined" color="primary" />
         </Stack>
       </div> */}
-      {
-        isShow &&
+      {isShow && (
         <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        message={'Hello, ' + user.name + ' ' + user.surname + '!'}
-        action={action}
-        key={transition ? transition.name : ''}
-        TransitionComponent={transition}
-      />
-      }
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          message={"Hello, " + user.name + " " + user.surname + "!"}
+          action={action}
+          key={transition ? transition.name : ""}
+          TransitionComponent={transition}
+        />
+      )}
       <BottomNavigationComponent />
       {/* <div className='backgroundImage'/> */}
 
-        {/* <CardSubjectComponent/> */}
-        {/* <button onClick={populateWeatherData}>Click</button> */}
-      </div>
+      {/* <CardSubjectComponent/> */}
+      {/* <button onClick={populateWeatherData}>Click</button> */}
     </div>
-
   );
 };
 

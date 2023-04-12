@@ -1,8 +1,7 @@
 import axios from "axios";
 
-async function HomeService()
-{
-    return await axios.get('api/user/userget');
+async function HomeService() {
+  return await axios.get("api/user/teachersget");
 }
 
-export default HomeService
+export default HomeService;

@@ -3,6 +3,8 @@ import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import ChangeUserData from './components/changeuserdata/ChangeUserData';
 import StudentProfile from './components/StudentProfile/StudentProfile';
+import AdminPanel from './components/AdminPanel/AdminPanel';
+import AddSubject from './components/AddSubject/AddSubject';
 
 const AppRoutes = [
   {
@@ -16,6 +18,14 @@ const AppRoutes = [
   {
     path: '/signup',
     element: <SignUp />,
+  },
+  {
+    path: '/addsubject',
+    element: <AddSubject/>,
+  },
+  {
+    path: '/adminpanel',
+    element: <AdminPanel/>,
   },
   {
     path: '/studentprofile',

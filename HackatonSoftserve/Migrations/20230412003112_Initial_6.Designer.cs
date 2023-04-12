@@ -4,6 +4,7 @@ using HackatonSoftserve;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HackatonSoftserve.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230412003112_Initial_6")]
+    partial class Initial_6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,95 +24,6 @@ namespace HackatonSoftserve.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("HackatonSoftserve.Models.Admin", b =>
-                {
-                    b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AdminId");
-
-                    b.ToTable("Admins");
-                });
-
-            modelBuilder.Entity("HackatonSoftserve.Models.Comment", b =>
-                {
-                    b.Property<int>("CommentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SubjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CommentId");
-
-                    b.HasIndex("StudentUserId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("HackatonSoftserve.Models.Subject", b =>
-                {
-                    b.Property<int>("SubjectId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubjectId"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Rating")
-                        .HasColumnType("int");
-
-                    b.HasKey("SubjectId");
-
-                    b.ToTable("Subjects");
-                });
 
             modelBuilder.Entity("HackatonSoftserve.Models.Teacher", b =>
                 {
@@ -143,10 +57,6 @@ namespace HackatonSoftserve.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -201,9 +111,6 @@ namespace HackatonSoftserve.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SubjectId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -215,8 +122,6 @@ namespace HackatonSoftserve.Migrations
 
                     b.HasIndex("Password")
                         .IsUnique();
-
-                    b.HasIndex("SubjectId");
 
                     b.ToTable("Users");
                 });
@@ -236,32 +141,6 @@ namespace HackatonSoftserve.Migrations
                     b.ToTable("TeacherUser");
                 });
 
-            modelBuilder.Entity("HackatonSoftserve.Models.Comment", b =>
-                {
-                    b.HasOne("HackatonSoftserve.Models.User", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HackatonSoftserve.Models.Subject", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("SubjectId");
-
-                    b.HasOne("HackatonSoftserve.Models.Teacher", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("TeacherId");
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("HackatonSoftserve.Models.User", b =>
-                {
-                    b.HasOne("HackatonSoftserve.Models.Subject", null)
-                        .WithMany("Students")
-                        .HasForeignKey("SubjectId");
-                });
-
             modelBuilder.Entity("TeacherUser", b =>
                 {
                     b.HasOne("HackatonSoftserve.Models.User", null)
@@ -275,18 +154,6 @@ namespace HackatonSoftserve.Migrations
                         .HasForeignKey("TeachersTeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("HackatonSoftserve.Models.Subject", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Students");
-                });
-
-            modelBuilder.Entity("HackatonSoftserve.Models.Teacher", b =>
-                {
-                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }
