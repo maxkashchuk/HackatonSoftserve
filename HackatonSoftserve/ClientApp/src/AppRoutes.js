@@ -8,25 +8,25 @@ import AddSubject from './components/AddSubject/AddSubject';
 import SubjectHome from './components/SubjectHome/SubjectHome';
 
 const AppRoutes = [
-	{
-		index: true,
-		element: <Home />,
-	},
-	{
-	  path: '/signin',
-	  element: <SignIn />,
-	},
+  {
+    index: true,
+    element: <Home />,
+  },
+  {
+    path: '/signin',
+    element: <SignIn />,
+  },
   {
     path: '/signup',
     element: <SignUp />,
   },
   {
     path: '/addsubject',
-    element: <AddSubject/>,
+    element: <AddSubject />,
   },
   {
     path: '/adminpanel',
-    element: <AdminPanel/>,
+    element: <AdminPanel />,
   },
   {
     path: '/studentprofile',
@@ -34,12 +34,12 @@ const AppRoutes = [
   },
   {
     path: '/changeuserdata',
-    element: <ChangeUserData/>,
+    element: <ChangeUserData />,
   },
   {
     path: '/subjecthome',
-    element: <SubjectHome/>,
-  }
+    element: <SubjectHome />,
+  },
 ];
 
 export default AppRoutes;

@@ -1,24 +1,25 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import AdminPanelService from "./AdminPanelService";
-import Snackbar from "@mui/material/Snackbar";
-import Slide from "@mui/material/Slide";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import AdminPanelServiceDelete from "./AdminPanelServiceDelete";
-import Navigation from "../BottomNavigation/BottomNavigation";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import AdminPanelService from './AdminPanelService';
+import Snackbar from '@mui/material/Snackbar';
+import Slide from '@mui/material/Slide';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AdminPanelServiceDelete from './AdminPanelServiceDelete';
+import { useNavigate } from 'react-router-dom';
+import Navigation from '../BottomNavigation/BottomNavigation';
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="right" />;
@@ -49,7 +50,7 @@ export default function AdminPanel() {
       Surname: SecondName,
       Email: Email,
       Password: Password,
-      Role: "admin",
+      Role: 'admin',
     };
     AdminPanelService(user).then((res) => handleClick());
   }
@@ -79,20 +80,28 @@ export default function AdminPanel() {
     setOpen(false);
   };
 
+  const navigate = useNavigate();
+
+  function goToHome() {
+    navigate('/');
+  }
+
   return (
     <div>
       <ThemeProvider theme={theme}>
+        <Button onClick={goToHome} sx={{ marginTop: '2vh', marginLeft: '2vh', fontSize: '1.5rem' }}>
+          Dekanat
+        </Button>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
               marginTop: 8,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <SupervisorAccountIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
@@ -147,19 +156,14 @@ export default function AdminPanel() {
                   />
                 </Grid>
               </Grid>
-              <Button
-                onClick={addAdmin}
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+              <Button onClick={addAdmin} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Add
               </Button>
             </Box>
-            <Typography sx={{ marginTop: "3vh" }} component="h1" variant="h5">
+            <Typography sx={{ marginTop: '3vh' }} component="h1" variant="h5">
               Delete admin by Email
             </Typography>
-            <Grid sx={{ marginTop: "3vh" }} item xs={12}>
+            <Grid sx={{ marginTop: '3vh' }} item xs={12}>
               <TextField
                 required
                 fullWidth
@@ -175,8 +179,7 @@ export default function AdminPanel() {
               fullWidth
               color="error"
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+              sx={{ mt: 3, mb: 2 }}>
               Delete
             </Button>
           </Box>
@@ -188,8 +191,8 @@ export default function AdminPanel() {
           TransitionComponent={transition}
           message={
             <div>
-              <p style={{ display: "inline" }}>Admin was successfully added</p>
-              <AdminPanelSettingsIcon sx={{ marginLeft: "2vh" }} />
+              <p style={{ display: 'inline' }}>Admin was successfully added</p>
+              <AdminPanelSettingsIcon sx={{ marginLeft: '2vh' }} />
             </div>
           }
           key={transition ? transition.name : ''}
@@ -201,10 +204,8 @@ export default function AdminPanel() {
           TransitionComponent={transitionDel}
           message={
             <div>
-              <p style={{ display: "inline" }}>
-                Admin was successfully deleted
-              </p>
-              <AdminPanelSettingsIcon sx={{ marginLeft: "2vh" }} />
+              <p style={{ display: 'inline' }}>Admin was successfully deleted</p>
+              <AdminPanelSettingsIcon sx={{ marginLeft: '2vh' }} />
             </div>
           }
           key={transitionDel ? transitionDel.name + '1' : '1'}

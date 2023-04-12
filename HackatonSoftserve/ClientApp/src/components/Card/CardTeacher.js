@@ -1,29 +1,26 @@
-import * as React from "react";
-import { useEffect, useState } from "react";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Popover from "@mui/material/Popover";
-import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
-import LoggedInService from "../LoggedInService";
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { red } from '@mui/material/colors';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Popover from '@mui/material/Popover';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import LoggedInService from '../LoggedInService';
 import Slider from '@mui/material/Slider';
-import { Button } from "@mui/material";
-
+import { Button } from '@mui/material';
 
 function CardTeacherComponent(props) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const [isShow, setIsShow] = useState();
 
-  const [isRatingShow, setIsRatingShow] = useState(
-    props.teacher.rating === null ? false : true
-  );
+  const [isRatingShow, setIsRatingShow] = useState(props.teacher.rating === null ? false : true);
 
   const [rating, setRating] = useState(props.teacher.rating);
 
@@ -71,24 +68,28 @@ function CardTeacherComponent(props) {
 
   const open = Boolean(anchorEl);
 
-  const id = open ? "simple-popover" : undefined;
+  const id = open ? 'simple-popover' : undefined;
 
   return (
     <div
       style={{
-        display: "inline-block",
-        marginLeft: "17vh",
-        marginTop: "8vh",
-      }}
-    >
-      <Card sx={{ width: 250 }}>
+        display: 'inline-block',
+        marginLeft: '17vh',
+        marginTop: '8vh',
+      }}>
+      <Card
+        sx={{
+          width: 250,
+          backgroundColor: '#DDDDDD',
+          boxShadow:
+            'box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;',
+        }}>
         <CardHeader
           avatar={
             <Avatar
               src={props.teacher.image}
               sx={{ bgcolor: red[500] }}
-              aria-label="recipe"
-            ></Avatar>
+              aria-label="recipe"></Avatar>
           }
           action={
             isShow && (
@@ -97,7 +98,7 @@ function CardTeacherComponent(props) {
               </IconButton>
             )
           }
-          title={props.teacher.name + " " + props.teacher.surname}
+          title={props.teacher.name + ' ' + props.teacher.surname}
         />
         {isShow && (
           <Popover
@@ -106,51 +107,37 @@ function CardTeacherComponent(props) {
             anchorEl={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-          >
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}>
             <Box
               sx={{
-                "& > legend": { mt: 8 },
-                margin: '5vh'
-              }}
-            ></Box>
+                '& > legend': { mt: 8 },
+                margin: '5vh',
+              }}></Box>
             <div>
-            <Typography variant="h5" sx={{ p: 1, marginLeft: "6vh" }} component="legend">
-            Rating
-          </Typography>
-            </div>
-            <div>
-            <Typography variant="h6" sx={{ p: 1, marginLeft: "3vh" }} component="legend">
-            Material quality
-          </Typography>
-            </div>
-            <div style={{marginLeft: "2vh", margin: "2vh"}}>
-            <Slider
-              defaultValue={0}
-              getAriaValueText={valuetext}
-              step={20}
-              marks={marks}
-              
-            />
+              <Typography variant="h5" sx={{ p: 1, marginLeft: '6vh' }} component="legend">
+                Rating
+              </Typography>
             </div>
             <div>
-            <Typography variant="h6" sx={{ p: 1, marginLeft: "3vh" }} component="legend">
-            Wish to study
-          </Typography>
+              <Typography variant="h6" sx={{ p: 1, marginLeft: '3vh' }} component="legend">
+                Material quality
+              </Typography>
             </div>
-            <div style={{marginLeft: "2vh", margin: "2vh"}}>
-            <Slider
-              defaultValue={0}
-              getAriaValueText={valuetext}
-              step={20}
-              marks={marks}
-              
-            />
+            <div style={{ marginLeft: '2vh', margin: '2vh' }}>
+              <Slider defaultValue={0} getAriaValueText={valuetext} step={20} marks={marks} />
             </div>
-            <div style={{margin: "2vh", marginLeft: "5vh"}}>
-            <Button variant='outlined'>Submit</Button>
+            <div>
+              <Typography variant="h6" sx={{ p: 1, marginLeft: '3vh' }} component="legend">
+                Wish to study
+              </Typography>
+            </div>
+            <div style={{ marginLeft: '2vh', margin: '2vh' }}>
+              <Slider defaultValue={0} getAriaValueText={valuetext} step={20} marks={marks} />
+            </div>
+            <div style={{ margin: '2vh', marginLeft: '5vh' }}>
+              <Button variant="outlined">Submit</Button>
             </div>
           </Popover>
         )}
@@ -159,13 +146,7 @@ function CardTeacherComponent(props) {
             Rating
           </Typography>
           {isRatingShow && (
-            <Rating
-              sx={{ p: 1 }}
-              name="read-only"
-              value={rating}
-              precision={0.5}
-              readOnly
-            />
+            <Rating sx={{ p: 1 }} name="read-only" value={rating} precision={0.5} readOnly />
           )}
           {!isRatingShow && <p>Not rated yet</p>}
           <Typography variant="h5" color="text.secondary">

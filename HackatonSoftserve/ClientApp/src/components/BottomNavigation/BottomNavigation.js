@@ -118,13 +118,13 @@ export default function Navigation() {
             label="Subjects"
             icon={<AutoStoriesIcon />}
           />
-          <BottomNavigationAction label="Modify users" icon={<PublishedWithChangesIcon />} />
+          {/* <BottomNavigationAction label="Modify users" icon={<PublishedWithChangesIcon />} /> */}
           <BottomNavigationAction
             onClick={goToAddSubjects}
             label="Add subjects"
             icon={<PlaylistAddCheckCircleIcon />}
           />
-          <BottomNavigationAction label="Modify subjects" icon={<PlaylistAddCircleIcon />} />
+          {/* <BottomNavigationAction label="Modify subjects" icon={<PlaylistAddCircleIcon />} /> */}
           <BottomNavigationAction
             onClick={goToAdminPanel}
             label="Admin panel"
