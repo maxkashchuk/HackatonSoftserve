@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import LoggedInService from '../LoggedInService';
 import { Button } from '@mui/material';
 import Slider from '@mui/material/Slider';
+import CardSubjectService from "./CardSubjectService";
 
 const marks = [
   {
@@ -69,6 +70,12 @@ function CardSubjectComponent(props) {
     console.log(subjectName);
     console.log(Material);
     console.log(WishStudent);
+    const user = {
+      SubjectName: subjectName,
+      Material: Material,
+      WishStudent: WishStudent
+    };
+    CardSubjectService(user);
   }
 
   useEffect(() => {
