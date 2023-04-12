@@ -1,6 +1,7 @@
 ﻿using HackatonSoftserve.Models;
 using HackatonSoftserve.Models.AuthModels;
 using HackatonSoftserve.Models.AuthModelsTeachers;
+using HackatonSoftserve.Models.RatingModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -92,6 +93,28 @@ namespace HackatonSoftserve.Controllers
                 await _AppContext.Teachers.AddAsync(u);
                 await _AppContext.SaveChangesAsync();
                 return Ok(u);
+            }
+            return BadRequest();
+        }
+
+        [Route("ratingcount")]
+        [HttpPost]
+        async public Task<ActionResult> RatingCount(TeacherRating sr)
+        {
+            if (sr != null)
+            {
+                Teacher t = await _AppContext.Teachers.Where(el => el.Email == sr.TeacherEmail).FirstOrDefaultAsync();
+                if (t != null)
+                {
+                    t.Rating = (sr.StimulatingStudents + sr.StudyingQuality) / 2;
+                    //await _AppContext.SaveChangesAsync();
+                    //sr.WishStudent + 
+                    //await _AppContext.Subjects.AddAsync(s);
+                    //await _AppContext.SaveChangesAsync();
+                    _AppContext.Update(t);
+                    await _AppContext.SaveChangesAsync();
+                    return Ok(t);
+                }
             }
             return BadRequest();
         }

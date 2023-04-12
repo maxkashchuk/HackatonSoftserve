@@ -14,6 +14,7 @@ import Rating from '@mui/material/Rating';
 import LoggedInService from '../LoggedInService';
 import Slider from '@mui/material/Slider';
 import { Button } from '@mui/material';
+import CardTeacherService from './CardTeacherService';
 
 function CardTeacherComponent(props) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -23,6 +24,24 @@ function CardTeacherComponent(props) {
   const [isRatingShow, setIsRatingShow] = useState(props.teacher.rating === null ? false : true);
 
   const [rating, setRating] = useState(props.teacher.rating);
+
+  const [subjectName, setSubjectName] = useState(props.teacher.email);
+
+  const [Material, setMaterial] = useState();
+
+  const [WishStudent, setWishStudent] = useState();
+
+  function setTeacherRating() {
+    console.log(subjectName);
+    console.log(Material);
+    console.log(WishStudent);
+    const user = {
+      TeacherEmail: subjectName,
+      StudyingQuality: Material,
+      StimulatingStudents: WishStudent
+    };
+    CardTeacherService(user);
+  }
 
   const marks = [
     {
@@ -110,7 +129,7 @@ function CardTeacherComponent(props) {
               vertical: 'bottom',
               horizontal: 'left',
             }}>
-            <Box
+              <Box
               sx={{
                 '& > legend': { mt: 8 },
                 margin: '5vh',
@@ -122,9 +141,81 @@ function CardTeacherComponent(props) {
             </div>
             <div>
               <Typography variant="h6" sx={{ p: 1, marginLeft: '3vh' }} component="legend">
-                Material quality
+                Studying quality
               </Typography>
             </div>
+            <div style={{ marginLeft: '2vh', margin: '2vh' }}>
+              <Slider
+                defaultValue={0}
+                getAriaValueText={valuetext}
+                step={20}
+                marks={marks}
+                onChange={(e, val) => {
+                  switch (val) {
+                    case 0:
+                      setMaterial(0);
+                      break;
+                    case 20:
+                      setMaterial(1);
+                      break;
+                    case 40:
+                      setMaterial(2);
+                      break;
+                    case 60:
+                      setMaterial(3);
+                      break;
+                    case 80:
+                      setMaterial(4);
+                      break;
+                    case 100:
+                      setMaterial(5);
+                      break;
+                  }
+                }}
+              />
+            </div>
+            <div>
+              <Typography variant="h6" sx={{ p: 1, marginLeft: '3vh' }} component="legend">
+                Stimulating students
+              </Typography>
+            </div>
+            <div style={{ marginLeft: '2vh', margin: '2vh' }}>
+              <Slider
+                defaultValue={0}
+                getAriaValueText={valuetext}
+                step={20}
+                marks={marks}
+                onChange={(e, val) => {
+                  switch (val) {
+                    case 0:
+                      setWishStudent(0);
+                      break;
+                    case 20:
+                      setWishStudent(1);
+                      break;
+                    case 40:
+                      setWishStudent(2);
+                      break;
+                    case 60:
+                      setWishStudent(3);
+                      break;
+                    case 80:
+                      setWishStudent(4);
+                      break;
+                    case 100:
+                      setWishStudent(5);
+                      break;
+                  }
+                }}
+              />
+            </div>
+            <div style={{ margin: '2vh', marginLeft: '5vh' }}>
+              <Button variant="outlined" onClick={setTeacherRating}>
+                Submit
+              </Button>
+            </div>
+            {/* 
+            
             <div style={{ marginLeft: '2vh', margin: '2vh' }}>
               <Slider defaultValue={0} getAriaValueText={valuetext} step={20} marks={marks} />
             </div>
@@ -138,7 +229,7 @@ function CardTeacherComponent(props) {
             </div>
             <div style={{ margin: '2vh', marginLeft: '5vh' }}>
               <Button variant="outlined">Submit</Button>
-            </div>
+            </div> */}
           </Popover>
         )}
         <CardContent>

@@ -25,20 +25,20 @@ const theme = createTheme();
 
 const FileButton = styled(Button)({
   width: "23vh",
-  marginLeft: "12%",
-  color: "#f48700",
-  borderColor: "#f48700",
+  marginLeft: "14vh",
+  color: "#1b7ced",
+  borderColor: "#1b7ced",
   "&:hover": {
-    color: "#FFC75F",
-    borderColor: "#FFC75F",
+    color: "#1870d5",
+    borderColor: "#1870d5",
   },
   "&:active": {
-    color: "f48700",
-    borderColor: "f48700",
+    color: "#1b7ced",
+    borderColor: "#1b7ced",
   },
   "&:focus": {
-    color: "f48700",
-    borderColor: "f48700",
+    color: "#1b7ced",
+    borderColor: "#1b7ced",
   },
 });
 
