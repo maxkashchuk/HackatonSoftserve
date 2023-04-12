@@ -8,14 +8,14 @@ import AddSubject from './components/AddSubject/AddSubject';
 import SubjectHome from './components/SubjectHome/SubjectHome';
 
 const AppRoutes = [
-  {
-    index: true,
-    element: <Home />,
-  },
-  {
-    path: '/signin',
-    element: <SignIn />,
-  },
+	{
+		index: true,
+		element: <Home />,
+	},
+	{
+	  path: '/signin',
+	  element: <SignIn />,
+	},
   {
     path: '/signup',
     element: <SignUp />,

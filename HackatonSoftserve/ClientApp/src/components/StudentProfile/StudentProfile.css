@@ -1,53 +1,49 @@
-  @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@600&display=swap');
 
-
-  body::-webkit-scrollbar {
-    width: 1em;
-  }
-   
-  body::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-   
-  body::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
-  }
-
-
-.userData {
-    font-family: 'Encode Sans Condensed', sans-serif;
-    font-size: 4vh ;
-    margin-left: 5vh;
-    margin-top: 4vh;
+body::-webkit-scrollbar {
+  width: 1em;
 }
 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.userData {
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-size: 4vh;
+  margin-left: 5vh;
+  margin-top: 4vh;
+}
 
 .leftData {
-  
-    width: 80vh ;
-    display: inline-block;
-    display: table-cell;
-    color: aliceblue;
-    z-index: 2;
-    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-    background-color:rgba(0,0,0,.3);
+  width: 80vh;
+  height: 100vh;
+  display: inline-block;
+  display: table-cell;
+  color: aliceblue;
+  z-index: 2;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .fullImage {
-  background-image: url('../images/mainleneu1.png');height: 707px;
+  background-image: url('../images/mainleneu1.png');
+  height: 707px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
   width: 100%;
   z-index: 1;
-  box-shadow: rgba(4, 4, 7, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 25px 36px -25px inset;
+  box-shadow: rgba(4, 4, 7, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 25px 36px -25px inset;
 }
 
-
-
 .vriad {
-
-    display: table;
-
+  display: table;
 }

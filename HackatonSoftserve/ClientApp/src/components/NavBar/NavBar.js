@@ -1,14 +1,14 @@
-import "./NavBar.css";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import LoggedInService from "../LoggedInService";
+import './NavBar.css';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import LoggedInService from '../LoggedInService';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -20,27 +20,30 @@ const NavBar = () => {
   });
 
   function logOut() {
-    localStorage.removeItem("isLogged");
-    localStorage.removeItem("User");
-    navigate("/");
+    localStorage.removeItem('isLogged');
+    localStorage.removeItem('User');
+    navigate('/');
     window.location.reload(false);
+  }
+  function goToHome() {
+    navigate('/');
   }
 
   function goToLogin() {
-    navigate("/signin");
+    navigate('/signin');
   }
   function goToSignUp() {
-    navigate("/signup");
+    navigate('/signup');
   }
 
   function goToStudentProfile() {
-    navigate("/studentprofile");
+    navigate('/studentprofile');
   }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar sx={{ backgroundColor: "#000" }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Toolbar sx={{ backgroundColor: '#000' }}>
+          <Typography onClick={goToHome} variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Dekanat
           </Typography>
           {!isShow && (
