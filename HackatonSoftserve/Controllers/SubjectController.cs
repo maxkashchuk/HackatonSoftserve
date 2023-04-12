@@ -66,5 +66,13 @@ namespace HackatonSoftserve.Controllers
             }
             return BadRequest();
         }
+
+        [Route("subjectsget")]
+        [HttpGet]
+        async public Task<ActionResult> Example()
+        {
+            List<Subject> s = await _AppContext.Subjects.ToListAsync();
+            return Ok(s);
+        }
     }
 }

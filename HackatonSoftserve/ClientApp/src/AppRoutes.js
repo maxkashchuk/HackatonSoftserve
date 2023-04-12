@@ -5,6 +5,7 @@ import ChangeUserData from './components/changeuserdata/ChangeUserData';
 import StudentProfile from './components/StudentProfile/StudentProfile';
 import AdminPanel from './components/AdminPanel/AdminPanel';
 import AddSubject from './components/AddSubject/AddSubject';
+import SubjectHome from './components/SubjectHome/SubjectHome';
 
 const AppRoutes = [
   {
@@ -34,6 +35,10 @@ const AppRoutes = [
   {
     path: '/changeuserdata',
     element: <ChangeUserData/>,
+  },
+  {
+    path: '/subjecthome',
+    element: <SubjectHome/>,
   }
 ];
 

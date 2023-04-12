@@ -47,7 +47,17 @@ export default function Navigation() {
 
   function goToAddSubjects()
   {
-    navigate("addsubject");
+    navigate("/addsubject");
+  }
+
+  function goToSubjectsHome()
+  {
+    navigate("/subjecthome");
+  }
+
+  function goToHome()
+  {
+    navigate("/");
   }
 
   return (
@@ -67,8 +77,8 @@ export default function Navigation() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Teachers" icon={<SchoolIcon />} />
-          <BottomNavigationAction label="Subjects" icon={<HistoryEduIcon />} />
+          <BottomNavigationAction onClick={goToHome} label="Teachers" icon={<SchoolIcon />} />
+          <BottomNavigationAction onClick={goToSubjectsHome} label="Subjects" icon={<HistoryEduIcon />} />
           <BottomNavigationAction
             onClick={goToProfile}
             label="Profile"
@@ -84,8 +94,8 @@ export default function Navigation() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Colleagues" icon={<HandshakeIcon />} />
-          <BottomNavigationAction label="Subjects" icon={<AutoStoriesIcon />} />
+          <BottomNavigationAction onClick={goToHome} label="Colleagues" icon={<HandshakeIcon />} />
+          <BottomNavigationAction onClick={goToSubjectsHome} label="Subjects" icon={<AutoStoriesIcon />} />
           <BottomNavigationAction
             label="Profile"
             icon={<AccountCircleIcon />}
@@ -100,8 +110,8 @@ export default function Navigation() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Teachers" icon={<PeopleIcon />} />
-          <BottomNavigationAction label="Subjects" icon={<AutoStoriesIcon />} />
+          <BottomNavigationAction onClick={goToHome} label="Teachers" icon={<PeopleIcon />} />
+          <BottomNavigationAction onClick={goToSubjectsHome} label="Subjects" icon={<AutoStoriesIcon />} />
           <BottomNavigationAction
             label="Modify users"
             icon={<PublishedWithChangesIcon />}
@@ -130,8 +140,8 @@ export default function Navigation() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Teachers" icon={<PeopleIcon />} />
-          <BottomNavigationAction label="Subjects" icon={<AutoStoriesIcon />} />
+          <BottomNavigationAction onClick={goToHome} label="Teachers" icon={<PeopleIcon />} />
+          <BottomNavigationAction onClick={goToSubjectsHome} label="Subjects" icon={<AutoStoriesIcon />} />
         </BottomNavigation>
       )}
     </Box>
