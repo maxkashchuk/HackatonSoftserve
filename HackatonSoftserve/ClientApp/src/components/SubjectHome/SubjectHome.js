@@ -1,20 +1,20 @@
-import "./SubjectHome.css";
-import * as React from "react";
-import { useEffect, useState } from "react";
-import NavBar from "../NavBar/NavBar";
-import CardTeacherComponent from "../Card/CardTeacher";
-import CardSubjectComponent from "../Card/CardSubject";
-import BottomNavigationComponent from "../BottomNavigation/BottomNavigation";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
-import LoggedInService from "../LoggedInService";
-import Button from "@mui/material/Button";
-import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import GetUserService from "../GetUserService";
-import Slide from "@mui/material/Slide";
-import SubjectHomeService from "./SubjectHomeService";
+import './SubjectHome.css';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import NavBar from '../NavBar/NavBar';
+import CardTeacherComponent from '../Card/CardTeacher';
+import CardSubjectComponent from '../Card/CardSubject';
+import BottomNavigationComponent from '../BottomNavigation/BottomNavigation';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import LoggedInService from '../LoggedInService';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import GetUserService from '../GetUserService';
+import Slide from '@mui/material/Slide';
+import SubjectHomeService from './SubjectHomeService';
 
 const SubjectHome = () => {
   const [open, setOpen] = useState(false);
@@ -30,15 +30,15 @@ const SubjectHome = () => {
   const [isRoleAdmin, setRoleAdmin] = useState(false);
 
   useEffect(() => {
-    if (LoggedInService() === true) {
+    if (LoggedInService() === false) {
       GetUserService().then((res) => {
         setUser(res);
-        if (user.role !== "admin") {
+        if (user.role !== 'admin') {
           setRoleAdmin(true);
         }
       });
       if (isRoleAdmin === true) {
-        setIsShow("true");
+        setIsShow('true');
       }
       handleClick();
     }
@@ -54,7 +54,7 @@ const SubjectHome = () => {
             console.log(elem);
           }
           return <CardSubjectComponent key={ind} subject={elem} />;
-        })
+        }),
       );
     });
   }
@@ -69,7 +69,7 @@ const SubjectHome = () => {
   };
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
 
@@ -78,12 +78,7 @@ const SubjectHome = () => {
 
   const action = (
     <React.Fragment>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
+      <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
         <CloseIcon fontSize="small" />
       </IconButton>
     </React.Fragment>
@@ -92,9 +87,7 @@ const SubjectHome = () => {
   return (
     <div>
       <NavBar />
-      <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
-      >
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {listTeachers}
       </div>
       {/* <div>
@@ -107,9 +100,9 @@ const SubjectHome = () => {
           open={open}
           autoHideDuration={6000}
           onClose={handleClose}
-          message={"Hello, " + user.name + " " + user.surname + "!"}
+          message={'Hello, ' + user.name + ' ' + user.surname + '!'}
           action={action}
-          key={transition ? transition.name : ""}
+          key={transition ? transition.name : ''}
           TransitionComponent={transition}
         />
       )}

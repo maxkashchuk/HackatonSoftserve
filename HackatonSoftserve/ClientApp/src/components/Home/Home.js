@@ -1,20 +1,20 @@
-import "./Home.css";
-import * as React from "react";
-import { useEffect, useState } from "react";
-import NavBar from "../NavBar/NavBar";
-import CardTeacherComponent from "../Card/CardTeacher";
-import CardSubjectComponent from "../Card/CardSubject";
-import BottomNavigationComponent from "../BottomNavigation/BottomNavigation";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
-import LoggedInService from "../LoggedInService";
-import Button from "@mui/material/Button";
-import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import GetUserService from "../GetUserService";
-import Slide from "@mui/material/Slide";
-import HomeService from "./HomeService";
+import './Home.css';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import NavBar from '../NavBar/NavBar';
+import CardTeacherComponent from '../Card/CardTeacher';
+import CardSubjectComponent from '../Card/CardSubject';
+import BottomNavigationComponent from '../BottomNavigation/BottomNavigation';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import LoggedInService from '../LoggedInService';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import GetUserService from '../GetUserService';
+import Slide from '@mui/material/Slide';
+import HomeService from './HomeService';
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -33,12 +33,12 @@ const Home = () => {
     if (LoggedInService() === true) {
       GetUserService().then((res) => {
         setUser(res);
-        if (user.role !== "admin") {
+        if (user.role !== 'admin') {
           setRoleAdmin(true);
         }
       });
       if (isRoleAdmin === true) {
-        setIsShow("true");
+        setIsShow('true');
       }
       console.log(user);
       handleClick();
@@ -55,7 +55,7 @@ const Home = () => {
             console.log(elem);
           }
           return <CardTeacherComponent key={ind} teacher={elem} />;
-        })
+        }),
       );
     });
   }
@@ -70,7 +70,7 @@ const Home = () => {
   };
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
 
@@ -79,12 +79,7 @@ const Home = () => {
 
   const action = (
     <React.Fragment>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
+      <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
         <CloseIcon fontSize="small" />
       </IconButton>
     </React.Fragment>
@@ -93,9 +88,7 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
-      >
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {listTeachers}
       </div>
       {/* <div>
@@ -108,16 +101,16 @@ const Home = () => {
           open={open}
           autoHideDuration={6000}
           onClose={handleClose}
-          message={"Hello, " + user.name + " " + user.surname + "!"}
+          message={'Hello, ' + user.name + ' ' + user.surname + '!'}
           action={action}
-          key={transition ? transition.name : ""}
+          key={transition ? transition.name : ''}
           TransitionComponent={transition}
         />
       )}
       <BottomNavigationComponent />
       {/* <div className='backgroundImage'/> */}
-
-      {/* <CardSubjectComponent/> */}
+      {/* 
+      <CardSubjectComponent /> */}
       {/* <button onClick={populateWeatherData}>Click</button> */}
     </div>
   );
