@@ -45,11 +45,14 @@ namespace HackatonSoftserve.Controllers
                 Subject s = await _AppContext.Subjects.Where(el => el.Name == sr.SubjectName).FirstOrDefaultAsync();
                 if(s != null)
                 {
+                    s.Rating = (sr.Material + sr.WishStudent) / 2;
                     //await _AppContext.SaveChangesAsync();
                     //sr.WishStudent + 
                     //await _AppContext.Subjects.AddAsync(s);
                     //await _AppContext.SaveChangesAsync();
-                    //return Ok(s);
+                    _AppContext.Update(s);
+                    await _AppContext.SaveChangesAsync();
+                    return Ok(s);
                 }
             }
             return BadRequest();
