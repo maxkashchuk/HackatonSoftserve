@@ -12,6 +12,9 @@ import Popover from "@mui/material/Popover";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import LoggedInService from "../LoggedInService";
+import Slider from '@mui/material/Slider';
+import { Button } from "@mui/material";
+
 
 function CardTeacherComponent(props) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -23,6 +26,37 @@ function CardTeacherComponent(props) {
   );
 
   const [rating, setRating] = useState(props.teacher.rating);
+
+  const marks = [
+    {
+      value: 0,
+      label: '0',
+    },
+    {
+      value: 20,
+      label: '1',
+    },
+    {
+      value: 40,
+      label: '2',
+    },
+    {
+      value: 60,
+      label: '3',
+    },
+    {
+      value: 80,
+      label: '4',
+    },
+    {
+      value: 100,
+      label: '5',
+    },
+  ];
+
+  function valuetext(value) {
+    return `${value}`;
+  }
 
   useEffect(() => {
     setIsShow(LoggedInService());
@@ -58,7 +92,7 @@ function CardTeacherComponent(props) {
           }
           action={
             isShow && (
-              <IconButton onClick={handleClick} aria-label="settings">
+              <IconButton onMouseOver={handleClick} aria-label="settings">
                 <MoreVertIcon />
               </IconButton>
             )
@@ -78,21 +112,46 @@ function CardTeacherComponent(props) {
           >
             <Box
               sx={{
-                "& > legend": { mt: 2 },
+                "& > legend": { mt: 8 },
+                margin: '5vh'
               }}
             ></Box>
-            <Typography sx={{ p: 1 }} component="legend">
-              Rate teacher
-            </Typography>
-            <Rating
-              sx={{ p: 1 }}
-              name="simple-controlled"
-              value={rating}
-              precision={0.5}
-              onChange={(event, newValue) => {
-                setRating(newValue);
-              }}
+            <div>
+            <Typography variant="h5" sx={{ p: 1, marginLeft: "6vh" }} component="legend">
+            Rating
+          </Typography>
+            </div>
+            <div>
+            <Typography variant="h6" sx={{ p: 1, marginLeft: "3vh" }} component="legend">
+            Material quality
+          </Typography>
+            </div>
+            <div style={{marginLeft: "2vh", margin: "2vh"}}>
+            <Slider
+              defaultValue={0}
+              getAriaValueText={valuetext}
+              step={20}
+              marks={marks}
+              
             />
+            </div>
+            <div>
+            <Typography variant="h6" sx={{ p: 1, marginLeft: "3vh" }} component="legend">
+            Wish to study
+          </Typography>
+            </div>
+            <div style={{marginLeft: "2vh", margin: "2vh"}}>
+            <Slider
+              defaultValue={0}
+              getAriaValueText={valuetext}
+              step={20}
+              marks={marks}
+              
+            />
+            </div>
+            <div style={{margin: "2vh", marginLeft: "5vh"}}>
+            <Button variant='outlined'>Submit</Button>
+            </div>
           </Popover>
         )}
         <CardContent>

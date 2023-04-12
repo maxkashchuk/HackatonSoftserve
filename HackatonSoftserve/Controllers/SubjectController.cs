@@ -3,6 +3,7 @@ using HackatonSoftserve.Models;
 using Microsoft.AspNetCore.Mvc;
 using HackatonSoftserve.Models.AddModelsSubject;
 using Microsoft.EntityFrameworkCore;
+using HackatonSoftserve.Models.RatingModels;
 
 namespace HackatonSoftserve.Controllers
 {
@@ -31,6 +32,25 @@ namespace HackatonSoftserve.Controllers
                 await _AppContext.Subjects.AddAsync(s);
                 await _AppContext.SaveChangesAsync();
                 return Ok(s);
+            }
+            return BadRequest();
+        }
+
+        [Route("ratingcount")]
+        [HttpPost]
+        async public Task<ActionResult> RatingCount(SubjectRating sr)
+        {
+            if (sr != null)
+            {
+                Subject s = await _AppContext.Subjects.Where(el => el.Name == sr.SubjectName).FirstOrDefaultAsync();
+                if(s != null)
+                {
+                    //await _AppContext.SaveChangesAsync();
+                    //sr.WishStudent + 
+                    //await _AppContext.Subjects.AddAsync(s);
+                    //await _AppContext.SaveChangesAsync();
+                    //return Ok(s);
+                }
             }
             return BadRequest();
         }
